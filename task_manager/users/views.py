@@ -13,7 +13,7 @@ class HomePageView(TemplateView):
 
 class UserListView(ListView):
     model = User
-    template_name = 'user/list.html'
+    template_name = 'users/list.html'
     context_object_name = 'users'
 
 
