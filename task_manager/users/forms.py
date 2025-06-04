@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.validators import MinLengthValidator
@@ -14,29 +15,21 @@ class BootstrapStyleMixin:
 class UserCreateForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Упрощенные требования к паролю
+
         self.fields['password1'].validators = [MinLengthValidator(3)]
 
-        # Единое оформление для всех полей
+        self.fields['password1'].help_text = 'Минимум 3 символа'
+        self.fields['password2'].help_text = 'Повторите пароль для подтверждения'
+
         for field in self.fields.values():
-            field.widget.attrs.update({
-                'class': 'form-control',
-                'placeholder': field.label
-            })
+            field.widget.attrs['class'] = 'form-control'
 
     class Meta:
         model = User
         fields = ('username', 'first_name',
                   'last_name', 'password1', 'password2')
-        labels = {
-            'username': 'Имя пользователя',
-            'first_name': 'Имя',
-            'last_name': 'Фамилия'
-        }
         help_texts = {
-            'username': 'Минимум 3 символа. Допустимы буквы, цифры и @/./+/-/_',
-            'password1': 'Минимум 3 символа',
-            'password2': 'Для подтверждения введите, пожалуйста, пароль ещё раз.'
+            'username': 'Минимум 3 символа. Только буквы, цифры и @/./+/-/_',
         }
 
 
