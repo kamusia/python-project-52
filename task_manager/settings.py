@@ -36,6 +36,8 @@ ALLOWED_HOSTS = ['*'] if DEBUG else [
 # Application definition
 
 INSTALLED_APPS = [
+    'task_manager.users',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -43,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'task_manager',
-    'task_manager.users',
 ]
 
 MIDDLEWARE = [
