@@ -5,13 +5,6 @@ from django.core.validators import MinLengthValidator
 from .models import User
 
 
-class BootstrapStyleMixin:
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs.update({'class': 'form-control mb-3'})
-
-
 class UserCreateForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
