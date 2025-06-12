@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.validators import MinLengthValidator
 from .models import User
+from django.core.exceptions import ValidationError
 
 
 class UserCreateForm(UserCreationForm):
@@ -16,6 +17,18 @@ class UserCreateForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name',
                   'last_name', 'password1', 'password2')
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if self.instance.pk:  # Режим редактирования
+            if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
+                raise ValidationError(
+                    "Пользователь с таким именем уже существует.")
+        else:  # Режим создания
+            if User.objects.filter(username=username).exists():
+                raise ValidationError(
+                    "Пользователь с таким именем уже существует.")
+        return username
 
 
 class UserLoginForm(AuthenticationForm):

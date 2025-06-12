@@ -10,13 +10,18 @@ from django.shortcuts import redirect
 
 
 class UserOwnerMixin(LoginRequiredMixin, UserPassesTestMixin):
-    error_message = 'У вас нет прав для изменения другого пользователя.'
+    login_url = reverse_lazy('login')
+    error_message_auth = 'Вы не авторизованы! Пожалуйста, выполните вход.'
+    error_message_permission = 'У вас нет прав для изменения другого пользователя.'
 
     def test_func(self):
         return self.request.user == self.get_object()
 
     def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
+        if not self.request.user.is_authenticated:
+            messages.error(self.request, self.error_message_auth)
+            return redirect('login')
+        messages.error(self.request, self.error_message_permission)
         return redirect('users:list')
 
 
