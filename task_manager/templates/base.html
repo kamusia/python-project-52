@@ -11,7 +11,7 @@
           rel="stylesheet">
 </head>
 <body>
-  <!-- Навигация (кнопки без ссылок) -->
+  <!-- Навигация -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light ms-3">
     <a class="navbar-brand" href="{% url 'home' %}">Менеджер задач</a>
     <div class="collapse navbar-collapse">
@@ -38,22 +38,9 @@
     </div>
   </nav>
 
-  {% if messages %}
-  <div class="container">
-    {% for message in messages %}
-    <div class="alert
-        {% if message.tags == 'error' %}alert-danger
-        {% else %}alert-{{ message.tags }}
-        {% endif %}">
-      {{ message }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  <!-- Контент -->
+  <!-- Контент и сообщения -->
   <main class="container-fluid">
+      {% bootstrap_messages %}
       {% block content %}{% endblock %}
   </main>
 
