@@ -1,14 +1,10 @@
-{% extends "base.html" %}
+{% extends "cud/create_update.html" %}
 {% load django_bootstrap5 %}
 
-{% block content %}
-<div class="col-md-6 mx-auto mt-5">
+{% block title %}
   <h2 class="mb-4">Регистрация</h2>
-  
-  <form method="post" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
+{% endblock %}
+
+{% block form_buttons %}
     {% bootstrap_button "Зарегистрироваться" button_type="submit" button_class="btn-primary w-100" %}
-  </form>
-</div>
 {% endblock %}
