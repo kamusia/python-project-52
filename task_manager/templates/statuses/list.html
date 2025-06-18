@@ -15,7 +15,7 @@
     <tr>
       <td>{{ status.id }}</td>
       <td>{{ status.name }}</td>
-      <td>{{ status.created_at" }}</td>
+      <td>{{ status.created_at }}</td>
       <td>
         <a href="{% url 'statuses:update' status.id %}" class="text-primary me-2">Изменить</a>
         <a href="{% url 'statuses:delete' status.id %}" class="text-danger">Удалить</a>
