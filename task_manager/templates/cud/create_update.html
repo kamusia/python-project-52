@@ -2,15 +2,16 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-
-{% block title %}
-{% endblock %}
-
-<form method="post" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    
-    {% block form_buttons %}
+<div class="col-md-6 mx-auto mt-5">
+    {% block title %}
     {% endblock %}
-</form>
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        
+        {% block form_buttons %}
+        {% endblock %}
+    </form>
+</div>
 {% endblock %}
