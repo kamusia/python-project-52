@@ -1,9 +1,12 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from .models import Status
 from django.urls import reverse_lazy
 from .forms import StatusForm
+from django.shortcuts import redirect
+from task_manager.tasks.models import Task
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -33,3 +36,13 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'statuses/delete.html'
     success_url = reverse_lazy('statuses:list')
     success_message = 'Статус успешно удален'
+
+    def form_valid(self, form):
+        status = self.get_object()
+        related_tasks = Task.objects.filter(status=status)
+
+        if related_tasks.exists():
+            messages.error(
+                self.request, ("Невозможно удалить статус, так как он связан с задачами"))
+            return redirect('statuses_list')
+        return super().form_valid(form)
