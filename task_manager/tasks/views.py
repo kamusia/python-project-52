@@ -12,6 +12,7 @@ from django_filters.views import FilterView
 
 class TaskListView(FilterView):
     model = Task
+    context_object_name = 'tasks'
     template_name = 'tasks/list.html'
     '''filterset_class = TaskFilter
 
