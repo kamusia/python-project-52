@@ -7,7 +7,7 @@ from .models import Task
 from .forms import TaskForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django_filters.views import FilterView
-from .filters import TaskFilter
+# from .filters import TaskFilter
 
 
 class TaskListView(FilterView):
