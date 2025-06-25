@@ -26,20 +26,20 @@
         <div class="col">Дата создания</div>
         <div class="col">{{ task.created_at }}</div>
       </div>
-      <!-- 
+      {% comment %}
       <div class="row p-1">
         <div class="col">
           <h6>Метки:</h6>
           {% if task.labels.exists %}
           <ul>
             {% for label in task.labels.all %}
-                <li>{% label.name %}</li>
+                <li>{{ label.name }}</li>
             {% endfor %}
           </ul>
           {% endif %}
         </div>
       </div>
-      -->
+      {% endcomment %}
       <div class="row p-1">
         <div class="col">
           <a href="{% url 'statuses:update' status.id %}">Изменить</a>
