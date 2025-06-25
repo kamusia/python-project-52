@@ -14,12 +14,6 @@ class TaskListView(FilterView):
     model = Task
     context_object_name = 'tasks'
     template_name = 'tasks/list.html'
-    '''filterset_class = TaskFilter
-
-    def get_filterset(self, filterset_class):
-        filterset = super().get_filterset(filterset_class)
-        filterset.request = self.request
-        return filterset'''
 
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -60,5 +54,5 @@ class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin,
 
 class TaskDetailView(DetailView):
     model = Task
-    template_name = 'tasks/task.html'
+    template_name = 'tasks/detail.html'
     context_object_name = 'task'
