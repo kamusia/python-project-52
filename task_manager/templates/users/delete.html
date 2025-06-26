@@ -1,7 +1,8 @@
 {% extends "cud/delete.html" %}
 
 {% block title %}
-    <h2>Удалить статус?</h2>
+    <h2>Удаление пользователя</h2>
+    <p>Вы уверены, что хотите удалить {{ user.first_name }} {{ user.last_name }}</p>
 {% endblock %}
 
 {% block form_buttons %}
