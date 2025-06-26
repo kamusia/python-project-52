@@ -28,6 +28,7 @@ class UserOwnerMixin(LoginRequiredMixin, UserPassesTestMixin):
 
         if user.tasks_created.exists() or user.tasks_assigned.exists():
             messages.error(self.request, self.error_message_relate)
+            return redirect('users:list')
 
         messages.error(self.request, self.error_message_permission)
         return redirect('users:list')

@@ -48,7 +48,7 @@ class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin,
 
     def handle_no_permission(self):
         messages.error(self.request, "Задачу может удалить только ее автор")
-        return redirect('tasks_list')
+        return redirect('tasks:list')
 
 
 class TaskDetailView(DetailView):
