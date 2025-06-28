@@ -43,6 +43,6 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
         if related_tasks.exists():
             messages.error(
-                self.request, ("Невозможно удалить метку, так как она связана с задачами"))
-            return redirect('labels_list')
+                self.request, ("Невозможно удалить метку, потому что она используется"))
+            return redirect('labels:list')
         return super().form_valid(form)
