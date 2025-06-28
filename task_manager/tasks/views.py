@@ -1,14 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib import messages
 from .models import Task
 from .forms import TaskForm
 from django.contrib.messages.views import SuccessMessageMixin
 
 
-class TaskListView(FilterView):
+class TaskListView(ListView):
     model = Task
     context_object_name = 'tasks'
     template_name = 'tasks/list.html'
