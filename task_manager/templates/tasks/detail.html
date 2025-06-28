@@ -26,7 +26,6 @@
         <div class="col">Дата создания</div>
         <div class="col">{{ task.created_at }}</div>
       </div>
-      {% comment %}
       <div class="row p-1">
         <div class="col">
           <h6>Метки:</h6>
@@ -39,7 +38,6 @@
           {% endif %}
         </div>
       </div>
-      {% endcomment %}
       <div class="row p-1">
         <div class="col">
           <a href="{% url 'tasks:update' task.id %}">Изменить</a>

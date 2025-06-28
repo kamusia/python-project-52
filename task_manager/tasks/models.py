@@ -13,8 +13,8 @@ class Task(models.Model):
     executor = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name="tasks_assigned",
         null=True, blank=True)
-    '''labels = models.ManyToManyField(
-        'labels.Label', blank=True, related_name='tasks')'''
+    labels = models.ManyToManyField(
+        'labels.Label', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
