@@ -43,6 +43,6 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
         if related_tasks.exists():
             messages.error(
-                self.request, ("Невозможно удалить статус, так как он связан с задачами"))
+                self.request, ("Невозможно удалить статус, потому что он используется"))
             return redirect('statuses:list')
         return super().form_valid(form)
