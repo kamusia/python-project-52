@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <h1 class="my-4">Задачи</h1>
 <a href="{% url 'tasks:create' %}" class="btn btn-primary">Создать задачу</a>
+<form method="get">
+  {{ filter.form|crispy }}
+  <button type="submit" class="btn btn-primary mt-3">Показать</button>
+</form>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -15,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for task in tasks %}
+    {% for task in filter.qs %}
     <tr>
       <td>{{ task.id }}</td>
       <td><a href="{% url 'tasks:detail' task.id %}">{{ task.name }}</a></td>
@@ -28,6 +33,10 @@
         <a href="{% url 'tasks:delete' task.id %}" class="text-danger">Удалить</a>
       </td>
     </tr>
+    {% empty %}
+      <tr>
+        <td colspan="7" class="text-center">Подходящих задач не найдено.</td>
+      </tr>
     {% endfor %}
   </tbody>
 </table>

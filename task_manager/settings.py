@@ -50,7 +50,10 @@ INSTALLED_APPS = [
     'task_manager.users',
     'task_manager.statuses',
     'task_manager.tasks',
-    'task_manager.labels'
+    'task_manager.labels',
+    'crispy_bootstrap5',
+    'crispy_forms',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
