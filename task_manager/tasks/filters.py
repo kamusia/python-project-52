@@ -6,7 +6,17 @@ from task_manager.labels.models import Label
 
 class TaskFilter(django_filters.FilterSet):
 
-    labels = ModelChoiceFilter(
+    status = django_filters.ModelChoiceFilter(
+        queryset=Status.objects.all(),
+        label="Статус"
+    )
+
+    executor = django_filters.ModelChoiceFilter(
+        queryset=Label.objects.all(),
+        label='Исполнитель'
+    )
+
+    labels = django_filters.ModelChoiceFilter(
         queryset=Label.objects.all(),
         label='Метки'
     )
