@@ -15,6 +15,7 @@ class TaskListView(FilterView):
     context_object_name = 'tasks'
     template_name = 'tasks/list.html'
     filterset_class = TaskFilter
+    ordering = ['id']
 
     def get_filterset(self, filterset_class):
         filterset = super().get_filterset(filterset_class)

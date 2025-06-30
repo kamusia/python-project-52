@@ -16,7 +16,7 @@ class TaskFilter(django_filters.FilterSet):
         labels = {
             'status': 'Статус',
             'executor': 'Исполнитель',
-            'labels': 'Метка'
+            'labels': 'Метки'
         }
 
     def filter_my_tasks(self, queryset, name, value):

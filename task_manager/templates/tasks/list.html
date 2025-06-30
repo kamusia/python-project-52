@@ -4,10 +4,14 @@
 {% block content %}
 <h1 class="my-4">Задачи</h1>
 <a href="{% url 'tasks:create' %}" class="btn btn-primary">Создать задачу</a>
-<form method="get">
-  {{ filter.form|crispy }}
-  <button type="submit" class="btn btn-primary mt-3">Показать</button>
-</form>
+<div class="card mb-3">
+  <div class="card-body bg-light">
+    <form method="get">
+      {{ filter.form|crispy }}
+      <button type="submit" class="btn btn-primary mt-3">Показать</button>
+    </form>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
