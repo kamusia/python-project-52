@@ -26,7 +26,7 @@ class UserOwnerMixin(LoginRequiredMixin, UserPassesTestMixin):
             messages.error(self.request, self.error_message_auth)
             return redirect('login')
 
-        if request.user != user:
+        if self.request.user != user:
             messages.error(self.request, self.error_message_permission)
             return redirect('users:list')
 
