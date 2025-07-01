@@ -19,19 +19,20 @@ class UserOwnerMixin(LoginRequiredMixin, UserPassesTestMixin):
 
         return self.request.user == user and not (user.tasks_created.exists() or user.tasks_assigned.exists())
 
-    def handle_no_permission(self):
+    def handle_no_permission(self, request):
         user = self.get_object()
 
         if not self.request.user.is_authenticated:
             messages.error(self.request, self.error_message_auth)
             return redirect('login')
 
+        if request.user != user:
+            messages.error(self.request, self.error_message_permission)
+            return redirect('users:list')
+
         if user.tasks_created.exists() or user.tasks_assigned.exists():
             messages.error(self.request, self.error_message_relate)
             return redirect('users:list')
-
-        messages.error(self.request, self.error_message_permission)
-        return redirect('users:list')
 
 
 class HomePageView(TemplateView):
@@ -57,8 +58,11 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     success_message = 'Вы залогинены'
 
 
-class UserLogoutView(SuccessMessageMixin, LogoutView):
-    success_message = 'Вы разлогинены'
+class UserLogoutView(LogoutView):
+
+    def dispatch(self, request):
+        messages.success(request, "Вы разлогинены")
+        return super().dispatch(request)
 
 
 class UserUpdateView(UserOwnerMixin, SuccessMessageMixin, UpdateView):

@@ -10,7 +10,7 @@ from django_filters.views import FilterView
 from .filters import TaskFilter
 
 
-class TaskListView(FilterView):
+class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
     context_object_name = 'tasks'
     template_name = 'tasks/list.html'
