@@ -19,7 +19,7 @@ class UserOwnerMixin(LoginRequiredMixin, UserPassesTestMixin):
 
         return self.request.user == user and not (user.tasks_created.exists() or user.tasks_assigned.exists())
 
-    def handle_no_permission(self, request):
+    def handle_no_permission(self):
         user = self.get_object()
 
         if not self.request.user.is_authenticated:
