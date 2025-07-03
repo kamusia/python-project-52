@@ -23,6 +23,7 @@ jobs:
 
       - name: Run tests
         env:
+          USE_SQLITE: True
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           make test
