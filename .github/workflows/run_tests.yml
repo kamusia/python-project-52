@@ -24,6 +24,6 @@ jobs:
       - name: Run tests
         env:
           USE_SQLITE: 'True'
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          SECRET_KEY: ${{ secrets.DJANGO_SECRET }}
         run: |
           make test
