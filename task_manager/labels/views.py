@@ -6,7 +6,6 @@ from .models import Label
 from django.urls import reverse_lazy
 from .forms import LabelForm
 from django.shortcuts import redirect
-from task_manager.tasks.models import Task
 
 
 class LabelListView(LoginRequiredMixin, ListView):
@@ -42,6 +41,7 @@ class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
         if label.tasks.exists():
             messages.error(
-                self.request, ("Невозможно удалить метку, потому что она используется"))
+                self.request, (
+                    "Невозможно удалить метку, потому что она используется"))
             return redirect('labels:list')
         return super().form_valid(form)

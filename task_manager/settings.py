@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
-import sys
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

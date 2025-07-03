@@ -1,4 +1,3 @@
-from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User
@@ -20,7 +19,8 @@ class UserCreateForm(UserCreationForm):
     def clean_username(self):
         username = self.cleaned_data['username']
         if self.instance.pk:  # Режим редактирования
-            if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
+            if User.objects.filter(username=username).exclude(
+                    pk=self.instance.pk).exists():
                 raise ValidationError(
                     "Пользователь с таким именем уже существует.")
         else:  # Режим создания

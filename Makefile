@@ -17,3 +17,9 @@ migrate:
 
 collectstatic:
 	uv run python3 manage.py collectstatic --no-input
+
+lint:
+	poetry run flake8 task_manager
+
+test:
+	uv run python manage.py test

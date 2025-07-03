@@ -1,4 +1,5 @@
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    TemplateView, ListView, CreateView, UpdateView, DeleteView)
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
@@ -11,13 +12,18 @@ from django.shortcuts import redirect
 
 class UserOwnerMixin(LoginRequiredMixin, UserPassesTestMixin):
     error_message_auth = 'Вы не авторизованы! Пожалуйста, выполните вход.'
-    error_message_permission = 'У вас нет прав для изменения другого пользователя.'
-    error_message_relate = 'Невозможно удалить пользователя, потому что он используется'
+    error_message_permission = (
+        'У вас нет прав для изменения другого пользователя.')
+    error_message_relate = (
+        'Невозможно удалить пользователя, потому что он используется')
 
     def test_func(self):
         user = self.get_object()
 
-        return self.request.user == user and not (user.tasks_created.exists() or user.tasks_assigned.exists())
+        return self.request.user == user and not (
+            user.tasks_created.exists() or
+            user.tasks_assigned.exists()
+        )
 
     def handle_no_permission(self):
         user = self.get_object()
