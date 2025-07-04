@@ -1,6 +1,7 @@
 from django.db import models
-from task_manager.users.models import User
+
 from task_manager.statuses.models import Status
+from task_manager.users.models import User
 
 
 class Task(models.Model):

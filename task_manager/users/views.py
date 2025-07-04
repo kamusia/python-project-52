@@ -1,13 +1,19 @@
-from django.views.generic import (
-    TemplateView, ListView, CreateView, UpdateView, DeleteView)
-from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse_lazy
-from .models import User
-from .forms import UserCreateForm, UserLoginForm
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
+
+from .forms import UserCreateForm, UserLoginForm
+from .models import User
 
 
 class UserOwnerMixin(LoginRequiredMixin, UserPassesTestMixin):
