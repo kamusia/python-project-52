@@ -22,7 +22,7 @@ class TaskFilter(django_filters.FilterSet):
 
     labels = django_filters.ModelChoiceFilter(
         queryset=Label.objects.all(),
-        label='метка'
+        label='Метка'
     )
 
     my_tasks = django_filters.BooleanFilter(
@@ -37,7 +37,7 @@ class TaskFilter(django_filters.FilterSet):
         labels = {
             'status': 'Статус',
             'executor': 'Исполнитель',
-            'labels': 'метка'
+            'labels': 'Метка'
         }
 
     def filter_my_tasks(self, queryset, name, value):
