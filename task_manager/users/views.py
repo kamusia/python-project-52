@@ -61,7 +61,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     form_class = UserCreateForm
     template_name = 'users/create.html'
     success_url = reverse_lazy('login')
-    success_message = 'Пользователь успешно создан'
+    success_message = 'Пользователь успешно зарегистрирован'
 
 
 class UserLoginView(SuccessMessageMixin, LoginView):
